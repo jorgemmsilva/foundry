@@ -192,6 +192,15 @@ impl RuntimeTransport {
             .timeout(self.timeout)
             .danger_accept_invalid_certs(self.accept_invalid_certs);
 
+        // When the native-tls feature is enabled, explicitly use the native-tls (OpenSSL/Schannel/
+        // Security.framework) backend. This avoids rustls certificate-verification failures behind
+        // corporate TLS-inspection proxies that re-sign certificates
+        // with algorithm pairings that rustls rejects.
+        #[cfg(feature = "native-tls")]
+        {
+            client_builder = client_builder.use_native_tls();
+        }
+
         // Disable automatic proxy detection if requested. This helps in sandboxed environments
         // (e.g., Cursor IDE sandbox, macOS App Sandbox) where system proxy detection via
         // SCDynamicStore causes crashes. See: https://github.com/foundry-rs/foundry/issues/12733

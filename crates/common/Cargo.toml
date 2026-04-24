@@ -87,6 +87,9 @@ foundry-wallets = { workspace = true, features = ["browser", "tempo"] }
 tokio-tungstenite.workspace = true
 futures.workspace = true
 
+[features]
+native-tls = ["reqwest/native-tls", "tokio-tungstenite/native-tls"]
+
 [build-dependencies]
 chrono.workspace = true
 vergen = { workspace = true, features = ["build", "emit_and_set"] }

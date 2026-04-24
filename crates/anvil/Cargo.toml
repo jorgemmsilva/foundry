@@ -139,3 +139,4 @@ cmd = [
     "tokio/signal",
 ]
 js-tracer = ["revm-inspectors/js-tracer"]
+native-tls = ["foundry-cli/native-tls"]
