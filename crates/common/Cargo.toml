@@ -88,7 +88,7 @@ tokio-tungstenite.workspace = true
 futures.workspace = true
 
 [features]
-native-tls = ["reqwest/native-tls", "tokio-tungstenite/native-tls"]
+native-tls = ["reqwest/native-tls", "tokio-tungstenite/native-tls", "foundry-block-explorers/openssl"]
 
 [build-dependencies]
 chrono.workspace = true
